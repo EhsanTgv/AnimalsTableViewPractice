@@ -78,5 +78,17 @@ final class ViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, titleForHeaderInSection section:Int) -> String?{
         return models[section].title
     }
+    
+    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return Array(alphabet.uppercased()).compactMap({"\($0)"})
+    }
+    
+    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+        guard let targetIndex = models.firstIndex(where: { $0.title == title}) else {
+            return 0
+        }
+        
+        return targetIndex;
+    }
 }
 
